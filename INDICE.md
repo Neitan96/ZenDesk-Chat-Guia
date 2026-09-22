@@ -6,12 +6,13 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 
 ---
 
-## Módulo 0 — Antes de começar ⬜
-📄 `modulos/00-antes-de-comecar.md` (ainda não escrito)
-- [ ] Confirmar se a conta já está na nova experiência de AI Agents ou ainda no Bot Builder legado
-- [ ] Confirmar plano contratado e se o add-on AI Agents Advanced está ativo
-- [ ] Mapear quantas marcas existem e como estão organizadas no Zendesk (contas separadas vs. multi-brand)
-- [ ] Glossário rápido: termos legados x termos atuais (ver [`pesquisa/plataforma-zendesk-ai.md`](./pesquisa/plataforma-zendesk-ai.md))
+## Módulo 0 — Antes de começar ✅
+📄 [`modulos/00-antes-de-comecar.md`](./modulos/00-antes-de-comecar.md)
+- [x] Como checar se a conta já está na nova experiência de AI Agents ou ainda no Bot Builder legado
+- [x] Como checar se a conta já recebeu o novo empacotamento (sem divisão Essential/Advanced)
+- [x] Como checar se o Agent Builder / Custom agents (EAP) está habilitado
+- [x] Como levantar marcas existentes e iniciar a documentação do Módulo 7
+- [x] Glossário rápido de termos legados x atuais (versão completa em [`anexos/glossario.md`](./anexos/glossario.md))
 
 ## Módulo 1 — Fundamentos da plataforma de IA do Zendesk ✅
 📄 [`modulos/01-fundamentos.md`](./modulos/01-fundamentos.md)
