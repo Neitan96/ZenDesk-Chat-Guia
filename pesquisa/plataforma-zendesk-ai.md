@@ -20,17 +20,21 @@ Fontes:
 ## Visão geral da ferramenta atual (2026)
 
 - **AI Agents** é o nome atual da linha de produtos de chatbot/IA do Zendesk (substituiu "Answer Bot" e o "bot builder" antigo).
-- Existem dois níveis de pacote: **AI Agents – Essential** (mais básico) e **AI Agents – Advanced** (libera dialogue builder, use cases, generative procedures, automações mais ricas e ações/integrações customizadas).
-- **Agent Builder**: ferramenta no-code para construir, testar e publicar agentes de IA customizados em cima das políticas e fluxos de trabalho da empresa.
+- **Correção importante (atualiza o que essa pesquisa dizia antes):** até maio/2026 existiam dois níveis — **AI Agents – Essential** (básico, incluso) e **AI Agents – Advanced** (pago, liberava dialogue builder, generative procedures, integrações via API). **Em 11/05/2026 a Zendesk removeu essa divisão**: os recursos que antes exigiam o add-on Advanced (raciocínio agentic, procedures multi-etapas, integrações externas via API) passaram a vir **inclusos em todos os planos Suite e Support**, sem add-on separado. Ou seja: o requisito de "add-on AI Agents Advanced" citado na primeira versão desta pesquisa está desatualizado — o que ainda vale confirmar é apenas se a conta está num plano Suite/Support e se já recebeu esse novo empacotamento.
+- **Agent Builder**: ferramenta no-code para construir, testar e publicar agentes de IA customizados em cima das políticas e fluxos de trabalho da empresa. **Atenção:** a documentação oficial trata "custom agents" no Agent Builder como **EAP (Early Access Program)** — ou seja, pode não estar disponível por padrão em todas as contas ainda; pode ser necessário solicitar acesso antecipado.
 - **Dialogue Builder**: editor visual (árvore de decisão) para desenhar conversas guiadas — é o sucessor conceitual do Flow Builder.
 - **Generative procedures**: permitem que o agente gere respostas usando IA generativa em cima da base de conhecimento/procedimentos, em vez de só seguir um fluxo fixo.
-- Requisito de plano: **Zendesk Suite Professional ou Enterprise** + add-on de AI Agents (Essential vem incluso em alguns planos; recursos avançados de integração exigem Advanced).
+- Requisito de plano (atualizado): **Zendesk Suite ou Support**, qualquer tier — não é mais necessário add-on separado para as funções avançadas, segundo o novo empacotamento pós-maio/2026. Vale confirmar no Admin Center se a conta já foi migrada para esse modelo.
 
 Fontes:
 - [About AI agents – Zendesk help](https://support.zendesk.com/hc/en-us/articles/6970583409690-About-AI-agents)
 - [AI agents general info – Zendesk help](https://support.zendesk.com/hc/en-us/sections/4405298908570-AI-agents-general-info)
 - [AI Agents | Zendesk Developer Docs](https://developer.zendesk.com/documentation/ai-agents/)
 - [Zendesk AI Agents Explained: Features, Pricing & 2026 Updates](https://help-desk-migration.com/zendesk-ai-agents/)
+- [Zendesk AI agent advanced vs essential: a 2026 comparison | eesel AI](https://www.eesel.ai/blog/zendesk-ai-agent-advanced-vs-essential)
+- [Announcing expanded access to AI agent capabilities for all Zendesk customers – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10487730059034-Announcing-expanded-access-to-AI-agent-capabilities-for-all-Zendesk-customers)
+- [Creating and using custom agents in Zendesk (EAP) – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10724438136858-Creating-and-using-custom-agents-in-Zendesk-EAP)
+- [Understanding custom agents and turning on the agent builder (EAP) – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10724212443802-Understanding-custom-agents-and-turning-on-the-agent-builder-EAP)
 
 ## Integrações externas (o que interessa para consultar o ERP)
 
@@ -46,6 +50,36 @@ Fontes:
 - [About actions in AI agents – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10783053154202-About-actions-in-AI-agents)
 - [Creating a custom CRM integration for an advanced AI agent – Zendesk help](https://support.zendesk.com/hc/en-us/articles/8357758272154-Creating-a-custom-CRM-integration-for-an-advanced-AI-agent)
 - [Announcing the integration of the action builder with AI agents – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10736071224858-Announcing-the-integration-of-the-action-builder-with-AI-agents)
+
+## Canais suportados
+
+O AI Agent roda dentro da mensageria do Zendesk (Web Widget / Messaging) e se estende, sem reconstruir o fluxo, para:
+
+- Web Widget (site)
+- WhatsApp
+- Facebook Messenger
+- Instagram Direct
+- X (Twitter) DM
+- WeChat, LINE
+- SMS (via Twilio)
+- SDKs mobile (iOS, Android, Unity)
+
+**Atenção:** o comportamento do agente pode variar por canal (nem todo recurso funciona igual em todo canal social — ex.: botões/carrosséis podem não existir no SMS). Vale revisar o artigo oficial "Differences in AI agent functionality on social messaging channels" antes de publicar num canal novo.
+
+Fontes:
+- [Zendesk messaging: Complete guide to setup, features, and pricing in 2026 | eesel AI](https://www.eesel.ai/blog/zendesk-messaging)
+- [Differences in AI agent functionality on social messaging channels – Zendesk help](https://support.zendesk.com/hc/en-us/articles/4408822333722-Differences-in-AI-agent-functionality-on-social-messaging-channels)
+- [How can I add the AI agent to WhatsApp or another social messaging channel? – Zendesk help](https://support.zendesk.com/hc/en-us/articles/9755141536410-How-can-I-add-the-AI-agent-to-WhatsApp-or-another-social-messaging-channel)
+
+## Onde fica no Admin Center
+
+- **AI > AI agents > AI agents**: configurações dos agentes de IA "padrão" (o modelo baseado em dialogues/generative procedures rodando sobre um fluxo existente).
+- **AI > Agent builder > Custom agents**: onde se cria um agente customizado do zero (recurso em EAP — pode exigir ativação/solicitação de acesso antecipado).
+- Depois de selecionar um agente, a aba **Settings** dele concentra as opções específicas daquele agente.
+
+Fonte:
+- [Migrating to the new AI agents experience – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10543162665242-Migrating-to-the-new-AI-agents-experience)
+- [Understanding custom agents and turning on the agent builder (EAP) – Zendesk help](https://support.zendesk.com/hc/en-us/articles/10724212443802-Understanding-custom-agents-and-turning-on-the-agent-builder-EAP)
 
 ## Onde entra o n8n
 
@@ -74,7 +108,8 @@ Fontes:
 
 ## Perguntas em aberto para confirmar na sua conta antes de aprofundar o treinamento
 
-1. Sua conta já migrou para a nova experiência de AI Agents, ou ainda está no legado? (Admin Center → AI agents)
-2. Qual o plano contratado hoje (Suite Professional/Enterprise) e existe o add-on **AI Agents Advanced**? Sem ele, os módulos de integração com API não se aplicam.
-3. Quantas marcas/instâncias de SAC existem, e cada uma tem um Zendesk separado ou é multi-brand numa conta só? Isso muda se o bot é construído uma vez e reaproveitado ou replicado por marca.
-4. O ERP já expõe uma API própria, ou o acesso a dados hoje é só via banco de dados/relatórios? Isso define se o n8n conversa direto com uma API ou precisa de um passo a mais.
+1. Sua conta já migrou para a nova experiência de AI Agents, ou ainda está no legado? (Admin Center → AI → AI agents)
+2. A conta já está no novo empacotamento (pós-11/05/2026, sem Essential/Advanced separados)? Se ainda aparecer a divisão antiga, isso muda o que está disponível para o módulo de integrações.
+3. O **Agent Builder / Custom agents** (EAP) já está habilitado na conta, ou seria preciso solicitar acesso antecipado à Zendesk?
+4. Quantas marcas/instâncias de SAC existem, e cada uma tem um Zendesk separado ou é multi-brand numa conta só? Isso muda se o bot é construído uma vez e reaproveitado ou replicado por marca.
+5. O ERP já expõe uma API própria, ou o acesso a dados hoje é só via banco de dados/relatórios? Isso define se o n8n conversa direto com uma API ou precisa de um passo a mais.

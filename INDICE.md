@@ -13,12 +13,12 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [ ] Mapear quantas marcas existem e como estão organizadas no Zendesk (contas separadas vs. multi-brand)
 - [ ] Glossário rápido: termos legados x termos atuais (ver `pesquisa/plataforma-zendesk-ai.md`)
 
-## Módulo 1 — Fundamentos da plataforma de IA do Zendesk ⬜
+## Módulo 1 — Fundamentos da plataforma de IA do Zendesk ✅
 `modulos/01-fundamentos.md`
-- [ ] O que é AI Agents (Essential x Advanced) e o que cada nível libera
-- [ ] Canais suportados (webchat, WhatsApp, Instagram, e-mail, etc.)
-- [ ] Conceitos-chave: use cases, intents, dialogues, generative procedures, handoff
-- [ ] Onde tudo isso vive no Admin Center (mapa de navegação)
+- [x] O que é AI Agents e o fim da divisão Essential x Advanced (mudou em mai/2026)
+- [x] Canais suportados (webchat, WhatsApp, Instagram, SMS, etc.) e diferenças por canal
+- [x] Conceitos-chave: use cases, intents, dialogues, generative procedures, actions, handoff
+- [x] Onde tudo isso vive no Admin Center (mapa de navegação)
 
 ## Módulo 2 — Construindo o agente (Agent Builder + Dialogue Builder) ⬜
 `modulos/02-agent-builder.md`
