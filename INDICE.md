@@ -43,11 +43,11 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Tratamento de erro nas chamadas de API (timeout de 10s, fallback, pedido não encontrado com limite de tentativas)
 - [x] Fluxo completo do exemplo do ERP juntando Módulos 2, 3 e 4
 
-## Módulo 5 — Testes e publicação ⬜
-📄 `modulos/05-testes-e-publicacao.md` (ainda não escrito)
-- [ ] Testando o bot antes de publicar (modo de simulação)
-- [ ] Publicando por canal
-- [ ] Checklist de boas práticas de conversa para SAC (tom, clareza, saída para humano)
+## Módulo 5 — Testes e publicação ✅
+📄 [`modulos/05-testes-e-publicacao.md`](./modulos/05-testes-e-publicacao.md)
+- [x] Test dialogue, Test branch e Session parameters — como forçar os cenários de erro do Módulo 4
+- [x] Publicando por canal (conflitos de trigger, um agente por canal, recomendação de ordem de rollout)
+- [x] Checklist de boas práticas de conversa para SAC (tom, clareza, mensagens de espera, sem jargão interno)
 
 ## Módulo 6 — Métricas e manutenção ⬜
 📄 `modulos/06-metricas-e-manutencao.md` (ainda não escrito)
