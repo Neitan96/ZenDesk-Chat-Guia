@@ -55,10 +55,12 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Como iterar o fluxo com base em dados reais (Fallback, abandono, BSAT baixo, priorização por volume)
 - [x] Governança: risco de edição simultânea, Save/Publish with note, version history e rollback
 
-## Módulo 7 — Replicando para múltiplas marcas ⬜
-📄 `modulos/07-multi-marca.md` (ainda não escrito)
-- [ ] Checklist de descoberta por marca (integrações de ERP específicas, tom de voz, fluxos próprios)
-- [ ] Template de documentação de fluxo por marca
+## Módulo 7 — Replicando para múltiplas marcas ✅
+📄 [`modulos/07-multi-marca.md`](./modulos/07-multi-marca.md)
+- [x] Realidade do Zendesk: um agente nativo por marca (não existe agente único multi-marca) e o que isso muda no planejamento
+- [x] O que reaproveitar entre marcas (workflow n8n, estrutura do dialogue) x o que nunca reaproveitar (credenciais, tom de voz)
+- [x] Checklist de descoberta por marca (ERP, canais, tom, fluxos próprios, fila de escalonamento)
+- [x] Template de documentação de fluxo por marca (`marcas/<nome-da-marca>.md`)
 
 ## Anexos
 - [ ] `anexos/glossario.md` — glossário completo de termos (ainda não escrito)
