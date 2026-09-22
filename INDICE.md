@@ -49,11 +49,11 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Publicando por canal (conflitos de trigger, um agente por canal, recomendação de ordem de rollout)
 - [x] Checklist de boas práticas de conversa para SAC (tom, clareza, mensagens de espera, sem jargão interno)
 
-## Módulo 6 — Métricas e manutenção ⬜
-📄 `modulos/06-metricas-e-manutencao.md` (ainda não escrito)
-- [ ] Relatórios de desempenho (taxa de resolução, CSAT, deflection)
-- [ ] Como iterar o fluxo com base em dados reais de atendimento
-- [ ] Governança: quem edita, como versionar mudanças no fluxo
+## Módulo 6 — Métricas e manutenção ✅
+📄 [`modulos/06-metricas-e-manutencao.md`](./modulos/06-metricas-e-manutencao.md)
+- [x] Taxa de resolução x deflection rate (e por que não são a mesma coisa) + BSAT
+- [x] Como iterar o fluxo com base em dados reais (Fallback, abandono, BSAT baixo, priorização por volume)
+- [x] Governança: risco de edição simultânea, Save/Publish with note, version history e rollback
 
 ## Módulo 7 — Replicando para múltiplas marcas ⬜
 📄 `modulos/07-multi-marca.md` (ainda não escrito)
