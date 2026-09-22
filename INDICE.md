@@ -36,11 +36,12 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Formato JSON esperado pelo Zendesk na resposta
 - [x] Exemplo prático guiado de ponta a ponta: consultar status de pedido no ERP durante a conversa
 
-## Módulo 4 — Lógica de conversa e regras de negócio ⬜
+## Módulo 4 — Lógica de conversa e regras de negócio ✅
 `modulos/04-logica-e-regras.md`
-- [ ] Variáveis, condições e ramificações no fluxo
-- [ ] Regras de escalonamento/handoff para atendente humano (com contexto transferido)
-- [ ] Tratamento de erro nas chamadas de API (timeout, ERP fora do ar, dado não encontrado)
+- [x] Variáveis, condições e ramificações (scenarios embutidos vs. bloco condicional)
+- [x] Regras de escalonamento/handoff: bloco de escalonamento, messaging triggers, dialogue mestre
+- [x] Tratamento de erro nas chamadas de API (timeout de 10s, fallback, pedido não encontrado com limite de tentativas)
+- [x] Fluxo completo do exemplo do ERP juntando Módulos 2, 3 e 4
 
 ## Módulo 5 — Testes e publicação ⬜
 `modulos/05-testes-e-publicacao.md`

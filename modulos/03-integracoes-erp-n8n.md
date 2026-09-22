@@ -90,7 +90,16 @@ O campo `encontrado` é proposital: no Módulo 4 você vai usar um bloco condici
 5. Zendesk mapeia `status_pedido` e `previsao_entrega` para variáveis do dialogue.
 6. Bot responde: "Seu pedido está: Em transporte, previsão de entrega: 25/09/2026."
 
-## 3.6 O que ainda falta (fica para o Módulo 4)
+## 3.6 Limite crítico: timeout de 10 segundos
+
+**As chamadas de API do Zendesk (custom actions) têm timeout fixo de 10 segundos, sem opção de configurar um valor maior.** Se o n8n + ERP não responderem dentro desse tempo, o Zendesk considera a ação como falha.
+
+Isso é uma restrição de arquitetura, não só de "tratamento de erro" (Módulo 4 trata o que fazer quando falha, mas o **design do workflow no n8n já precisa nascer rápido**):
+- Evite encadear muitas chamadas HTTP Request em sequência no n8n para uma única consulta — cada uma soma no tempo total.
+- Se o ERP for lento, considere um cache/consulta pré-processada em vez de bater direto nele a cada mensagem.
+- Teste o tempo de resposta ponta a ponta (Zendesk → n8n → ERP → volta) antes de ir pra produção — não assuma que "está rápido no meu teste manual do Postman" é o mesmo que rápido com todos os nós do n8n em série.
+
+## 3.7 O que ainda falta (fica para o Módulo 4)
 
 Este módulo monta o **caminho feliz** (pedido encontrado, ERP no ar, resposta rápida). Ainda não tratamos:
 - O que fazer quando `encontrado` vier `false`.
