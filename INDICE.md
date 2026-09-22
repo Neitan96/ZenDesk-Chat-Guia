@@ -62,10 +62,10 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Checklist de descoberta por marca (ERP, canais, tom, fluxos próprios, fila de escalonamento)
 - [x] Template de documentação de fluxo por marca (`marcas/<nome-da-marca>.md`)
 
-## Anexos
-- [ ] `anexos/glossario.md` — glossário completo de termos (ainda não escrito)
-- [ ] `anexos/links-oficiais.md` — links de referência da documentação oficial (ainda não escrito)
-- [ ] `anexos/checklist-pre-requisitos.md` — acessos e credenciais necessários (Zendesk admin, API do ERP, conta n8n) (ainda não escrito)
+## Anexos ✅
+- [x] [`anexos/glossario.md`](./anexos/glossario.md) — glossário completo de termos (incluindo legados e seus sucessores)
+- [x] [`anexos/links-oficiais.md`](./anexos/links-oficiais.md) — todos os links de referência usados na pesquisa e nos módulos
+- [x] [`anexos/checklist-pre-requisitos.md`](./anexos/checklist-pre-requisitos.md) — acessos e credenciais necessários (Zendesk admin, API do ERP, conta n8n)
 
 ---
 
