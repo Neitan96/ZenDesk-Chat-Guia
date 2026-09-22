@@ -27,14 +27,14 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Generative procedures: como criar, boas práticas, mapa da procedure
 - [x] Quando usar dialogue vs. generative procedure (e por que o fluxo de ERP é um dialogue)
 
-## Módulo 3 — Integrações externas: conectando no ERP via n8n ⬜
+## Módulo 3 — Integrações externas: conectando no ERP via n8n ✅
 `modulos/03-integracoes-erp-n8n.md`
 **Módulo central para o seu caso de uso.**
-- [ ] Action Builder / Custom Actions: como configurar um passo de chamada de API no fluxo
-- [ ] Autenticação (API key / OAuth) para o passo de API
-- [ ] Montando o lado n8n: nó Webhook (recebe do Zendesk) + nó HTTP Request (consulta o ERP)
-- [ ] Formatando a resposta do n8n para o Zendesk exibir ao cliente
-- [ ] Exemplo prático guiado: consultar status de pedido no ERP durante a conversa
+- [x] Action Builder / Custom Actions: connection, inputs, body e mapeamento de resposta
+- [x] Autenticação (API key / Basic auth / Bearer token / OAuth 2.0) para a connection
+- [x] Montando o lado n8n: nó Webhook (recebe do Zendesk) + nó HTTP Request (consulta o ERP) + formatação + Respond to Webhook
+- [x] Formato JSON esperado pelo Zendesk na resposta
+- [x] Exemplo prático guiado de ponta a ponta: consultar status de pedido no ERP durante a conversa
 
 ## Módulo 4 — Lógica de conversa e regras de negócio ⬜
 `modulos/04-logica-e-regras.md`
