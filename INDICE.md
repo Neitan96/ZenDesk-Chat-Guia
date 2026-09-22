@@ -20,12 +20,12 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 - [x] Conceitos-chave: use cases, intents, dialogues, generative procedures, actions, handoff
 - [x] Onde tudo isso vive no Admin Center (mapa de navegação)
 
-## Módulo 2 — Construindo o agente (Agent Builder + Dialogue Builder) ⬜
+## Módulo 2 — Construindo o agente (Dialogue Builder + Generative Procedures) ✅
 `modulos/02-agent-builder.md`
-- [ ] Criando um agente de IA do zero
-- [ ] Dialogue Builder: passo a passo de um fluxo guiado (pergunta → decisão → resposta)
-- [ ] Generative procedures: respostas geradas por IA sobre a base de conhecimento
-- [ ] Quando usar fluxo guiado vs. resposta generativa
+- [x] Criando um agente de IA e navegando entre Dialogues e Procedures
+- [x] Dialogue Builder: blocos principais e passo a passo de um fluxo guiado de exemplo
+- [x] Generative procedures: como criar, boas práticas, mapa da procedure
+- [x] Quando usar dialogue vs. generative procedure (e por que o fluxo de ERP é um dialogue)
 
 ## Módulo 3 — Integrações externas: conectando no ERP via n8n ⬜
 `modulos/03-integracoes-erp-n8n.md`
