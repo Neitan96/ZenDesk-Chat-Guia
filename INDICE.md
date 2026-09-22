@@ -65,6 +65,7 @@ Cada módulo vira um arquivo em `modulos/NN-nome.md` quando for escrito. Este í
 
 ## Anexos ✅
 - [x] [`anexos/glossario.md`](./anexos/glossario.md) — glossário completo de termos (incluindo legados e seus sucessores)
+- [x] [`anexos/glossario-apresentacao.html`](./anexos/glossario-apresentacao.html) — o mesmo glossário em formato de apresentação (10 slides navegáveis, com notas do apresentador). Abra o arquivo em qualquer navegador; setas do teclado ou os botões avançam os slides. Pode ser usado para apresentar ao vivo ou gravar a tela narrando, para virar um vídeo.
 - [x] [`anexos/links-oficiais.md`](./anexos/links-oficiais.md) — todos os links de referência usados na pesquisa e nos módulos
 - [x] [`anexos/checklist-pre-requisitos.md`](./anexos/checklist-pre-requisitos.md) — acessos e credenciais necessários (Zendesk admin, API do ERP, conta n8n)
 

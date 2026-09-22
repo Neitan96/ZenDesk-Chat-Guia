@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossário: Chatbots no Zendesk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+  :root {
+    --cream: #FAF9F4;
+    --ink: #1E2A26;
+    --ink-soft: #4A5750;
+    --dark: #17221F;
+    --dark-card: #1F2C29;
+    --dark-border: #2E3B37;
+    --teal: #2F6F62;
+    --teal-bg: #E4EFEA;
+    --amber: #C98A3D;
+    --amber-bg: #F7ECDA;
+    --gray: #6B7280;
+    --gray-bg: #E7E7E4;
+    --border: #E3E6DE;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #0d0d0b;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    overflow: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  #deck {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stage {
+    width: min(100vw, 177.78vh);
+    height: min(100vh, 56.25vw);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    padding: clamp(32px, 6vw, 96px);
+    color: var(--ink);
+    background: var(--cream);
+  }
+  .slide.active { display: flex; }
+  .slide.dark { background: var(--dark); color: var(--cream); }
+  h1 { font-size: clamp(40px, 7vw, 96px); font-weight: 700; line-height: 1.05; margin: 0; }
+  h2 { font-size: clamp(28px, 4.2vw, 52px); font-weight: 600; margin: 0; }
+  h3 { font-size: clamp(16px, 1.6vw, 22px); font-weight: 600; margin: 0; }
+  p { font-size: clamp(13px, 1.4vw, 20px); line-height: 1.4; margin: 0; }
+  .eyebrow { font-size: clamp(12px, 1.2vw, 18px); font-weight: 600; color: var(--amber); text-transform: uppercase; letter-spacing: 3px; }
+  .pill { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: clamp(11px, 1vw, 15px); font-weight: 600; }
+  .pill-atual { background: var(--teal-bg); color: var(--teal); }
+  .pill-legado { background: var(--gray-bg); color: var(--gray); }
+  .pill-atencao { background: var(--amber-bg); color: var(--amber); }
+  .row { display: flex; flex-direction: row; }
+  .col { display: flex; flex-direction: column; }
+  .gap-s { gap: clamp(8px, 1vw, 16px); }
+  .gap-m { gap: clamp(16px, 2vw, 32px); }
+  .gap-l { gap: clamp(24px, 3vw, 48px); }
+  .grow { flex: 1; }
+  .card {
+    background: #FFFFFF; border: 1px solid var(--border); border-radius: 16px;
+    padding: clamp(16px, 2vw, 32px);
+    display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px);
+  }
+  .card-dark {
+    background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px;
+    padding: clamp(16px, 2vw, 28px);
+  }
+  .card-teal { background: var(--teal-bg); border-radius: 16px; padding: clamp(16px, 2vw, 28px); display:flex; flex-direction:column; gap:8px; }
+  .card-amber { background: var(--amber-bg); border-radius: 16px; padding: clamp(16px, 2vw, 28px); display:flex; flex-direction:column; gap:8px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: clamp(12px, 1.5vw, 28px); }
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: clamp(12px, 1.5vw, 28px); }
+  table { border-collapse: collapse; font-size: clamp(12px, 1.4vw, 20px); width: 100%; }
+  th, td { padding: clamp(6px, 0.8vw, 14px) clamp(8px, 1vw, 16px); text-align: left; }
+  th { background: var(--dark); color: var(--cream); }
+  tr:nth-child(odd) td { background: #F3F2EC; }
+  tr:nth-child(even) td { background: #FFFFFF; }
+  .arrow { font-size: clamp(24px, 3vw, 40px); color: var(--amber); }
+  .muted { color: var(--ink-soft); }
+  .muted-dark { color: #A9B4AC; }
+
+  #controls {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(0,0,0,0.55); color: #fff; padding: 8px 18px; border-radius: 999px;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+  #controls button {
+    background: transparent; border: none; color: #fff; font-size: 18px; cursor: pointer;
+    line-height: 1; padding: 4px 8px;
+  }
+  #controls button:hover { color: var(--amber); }
+  #counter { min-width: 52px; text-align: center; }
+  #notes {
+    position: fixed; top: 16px; right: 16px; max-width: 380px;
+    background: rgba(0,0,0,0.7); color: #eee; padding: 12px 16px; border-radius: 10px;
+    font-size: 13px; line-height: 1.4; display: none; z-index: 10;
+  }
+  #notes.show { display: block; }
+
+  @media print {
+    #controls, #notes { display: none !important; }
+    #deck { display: block; }
+    .stage { width: 100%; height: auto; box-shadow: none; }
+    .slide { position: static; display: flex !important; page-break-after: always; height: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<div id="deck">
+  <div class="stage" id="stage">
+
+    <section class="slide dark active col gap-l" style="justify-content:center" data-notes="Abertura: essa apresentação resume o glossário do treinamento de chatbots no Zendesk. Serve como material de apoio para revisar termos rapidamente, sem reler os módulos inteiros.">
+      <p class="mono eyebrow">Treinamento Zendesk · AI Agents</p>
+      <h1>Glossário</h1>
+      <h2 style="color:var(--amber); font-weight:400;">Chatbots no Zendesk, com integração ao ERP via n8n</h2>
+      <p class="muted-dark">Termos usados nos Módulos 0–7 deste treinamento · versão completa em anexos/glossario.md</p>
+    </section>
+
+    <section class="slide col gap-l" data-notes="Explicar os dois selos antes de entrar nos termos: isso evita que alguém pesquise por fora e caia em um tutorial de Bot Builder achando que ainda é o caminho certo.">
+      <h2>Como usar este glossário</h2>
+      <p class="muted">Cada termo traz um selo de status. Isso evita aprender algo em cima de uma ferramenta que o Zendesk já está desligando.</p>
+      <div class="row gap-l grow">
+        <div class="card grow">
+          <span class="pill pill-atual mono">ATUAL</span>
+          <h3 style="font-size:clamp(18px,2.2vw,30px)">Vale construir em cima disso</h3>
+          <p class="muted">É a ferramenta ativa hoje na plataforma do Zendesk — use como referência para o que construir.</p>
+        </div>
+        <div class="card grow">
+          <span class="pill pill-legado mono">LEGADO</span>
+          <h3 style="font-size:clamp(18px,2.2vw,30px)">Reconheça, mas não construa em cima</h3>
+          <p class="muted">Ainda aparece em buscas, vídeos e artigos antigos — mas está sendo descontinuado ou substituído.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide col gap-l" data-notes="Esse mapa resolve 90% da confusão de quem já pesquisou por fora antes de abrir o treinamento. Se alguém perguntar sobre o Flow Builder, a resposta está aqui.">
+      <h2>Legado → o que usar hoje</h2>
+      <table>
+        <tr><th>Termo legado</th><th>Situação</th><th>Use no lugar</th></tr>
+        <tr><td>Bot Builder</td><td style="color:#B3552B">Desliga 10/12/2026</td><td><b>Agent Builder</b></td></tr>
+        <tr><td>Flow Builder</td><td style="color:#B3552B">Desliga junto com o Bot Builder</td><td><b>Dialogue Builder</b></td></tr>
+        <tr><td>Answer Bot</td><td class="muted">Renomeado</td><td><b>AI Agents</b></td></tr>
+        <tr><td>Essential / Advanced</td><td class="muted">Divisão removida em mai/2026</td><td><b>Um só pacote, plano Suite/Support</b></td></tr>
+        <tr><td>Integration Builder</td><td class="muted">Ainda existe, não recomendado p/ novo</td><td><b>Action Builder / Custom Actions</b></td></tr>
+      </table>
+    </section>
+
+    <section class="slide col gap-l" data-notes="AI Agent é o guarda-chuva; EAP é um aviso de que pode não estar na sua conta ainda; Insights Dashboard é onde tudo isso vira número.">
+      <h2>Fundamentos da plataforma</h2>
+      <div class="row gap-m grow">
+        <div class="card grow">
+          <div class="row" style="justify-content:space-between; align-items:center">
+            <h3 class="mono" style="font-size:clamp(16px,1.8vw,26px)">AI Agent</h3>
+            <span class="pill pill-atual">ATUAL</span>
+          </div>
+          <p class="muted">Nome atual da linha de chatbot/IA do Zendesk. Substituiu Answer Bot e o Bot Builder clássico.</p>
+        </div>
+        <div class="card grow">
+          <div class="row" style="justify-content:space-between; align-items:center">
+            <h3 class="mono" style="font-size:clamp(16px,1.8vw,26px)">EAP</h3>
+            <span class="pill pill-atencao">ATENÇÃO</span>
+          </div>
+          <p class="muted">Early Access Program. Recurso ainda não disponível por padrão em toda conta.</p>
+        </div>
+        <div class="card grow">
+          <div class="row" style="justify-content:space-between; align-items:center">
+            <h3 class="mono" style="font-size:clamp(16px,1.8vw,26px)">Insights Dashboard</h3>
+            <span class="pill pill-atual">ATUAL</span>
+          </div>
+          <p class="muted">Painel de métricas básico, incluso em qualquer plano: volume, resolução, escalonamento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide col gap-m" data-notes="Dialogue e generative procedure são as duas formas de responder; use case e intent decidem qual caminho ativar; variável carrega dado de um bloco para outro.">
+      <h2>Construindo o agente</h2>
+      <div class="grid3 grow">
+        <div class="card"><h3 class="mono">Use case</h3><p class="muted">O assunto que o agente sabe resolver, como "consultar status de pedido".</p></div>
+        <div class="card"><h3 class="mono">Intent</h3><p class="muted">Como o sistema reconhece qual use case o cliente quer, a partir do que ele digitou.</p></div>
+        <div class="card"><h3 class="mono">Dialogue</h3><p class="muted">Fluxo guiado, desenhado em árvore de decisão no Dialogue Builder.</p></div>
+        <div class="card"><h3 class="mono">Generative procedure</h3><p class="muted">Resposta gerada por IA a partir de um procedimento em linguagem natural + base de conhecimento.</p></div>
+        <div class="card"><h3 class="mono">Procedure map</h3><p class="muted">Visualização automática dos passos da procedure. Revise antes de publicar.</p></div>
+        <div class="card"><h3 class="mono">Variável</h3><p class="muted">Container de dado da conversa, reutilizável em mensagens depois de capturado.</p></div>
+      </div>
+    </section>
+
+    <section class="slide col gap-m" data-notes="Fallback é o item mais fácil de esquecer de configurar — e é exatamente o que evita o bot travar quando o ERP cai ou demora mais que 10 segundos.">
+      <h2>Conectando com sistemas externos</h2>
+      <div class="grid2 grow">
+        <div class="card"><h3 class="mono" style="font-size:clamp(16px,1.8vw,24px)">Action / Custom action</h3><p class="muted">Passo do fluxo que faz uma chamada de API para um sistema externo — a peça que chama o n8n.</p></div>
+        <div class="card"><h3 class="mono" style="font-size:clamp(16px,1.8vw,24px)">Connection</h3><p class="muted">Onde ficam guardadas as credenciais (API key, Basic, Bearer, OAuth 2.0).</p></div>
+        <div class="card"><h3 class="mono" style="font-size:clamp(16px,1.8vw,24px)">Scenario</h3><p class="muted">Condição dentro do bloco de integração para separar o que fazer conforme a resposta.</p></div>
+        <div class="card"><h3 class="mono" style="font-size:clamp(16px,1.8vw,24px)">Fallback</h3><p class="muted">Cenário padrão para quando nada mais bate — inclusive erro técnico e timeout.</p></div>
+      </div>
+    </section>
+
+    <section class="slide dark col gap-l" style="justify-content:center" data-notes="Este é o coração do módulo 3 do treinamento. O n8n existe pra traduzir entre o que o Zendesk exige (JSON específico) e o que o ERP realmente entende.">
+      <div class="row" style="justify-content:space-between; align-items:center">
+        <h2>Webhook (n8n)</h2>
+        <span class="pill mono" style="background:var(--teal); color:var(--cream)">ATUAL</span>
+      </div>
+      <p class="muted-dark">Nó do n8n que gera uma URL única para receber chamadas HTTP do Zendesk — o ponto de entrada do workflow que consulta o ERP.</p>
+      <div class="row gap-m" style="align-items:center">
+        <div class="card-dark col grow" style="align-items:center; gap:8px">
+          <p class="mono" style="font-weight:600">Zendesk</p><p class="muted-dark" style="font-size:14px">custom action</p>
+        </div>
+        <span class="arrow">→</span>
+        <div class="card-dark col grow" style="align-items:center; gap:8px">
+          <p class="mono" style="font-weight:600">n8n</p><p class="muted-dark" style="font-size:14px">webhook + HTTP request</p>
+        </div>
+        <span class="arrow">→</span>
+        <div class="card-dark col grow" style="align-items:center; gap:8px">
+          <p class="mono" style="font-weight:600">ERP</p><p class="muted-dark" style="font-size:14px">consulta o dado real</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide col gap-l" data-notes="Handoff é o conceito; escalation block é onde ele acontece dentro do dialogue; messaging trigger dispara isso automaticamente, sem depender de um bloco manual.">
+      <h2>Regras e escalonamento</h2>
+      <div class="row gap-m grow">
+        <div class="card grow"><h3 class="mono">Handoff</h3><p class="muted">Transferência da conversa do bot para um atendente humano, com o contexto já coletado.</p></div>
+        <div class="card grow"><h3 class="mono">Escalation block</h3><p class="muted">Bloco do dialogue que faz o handoff, com mensagem e fila de destino configuráveis.</p></div>
+        <div class="card grow"><h3 class="mono">Messaging trigger</h3><p class="muted">Regra automática de escalonamento por condição (ex.: sentimento negativo, cliente VIP).</p></div>
+      </div>
+    </section>
+
+    <section class="slide col gap-m" data-notes="Repita sempre: reportar por deflection sem olhar resolução mascara um bot que só empurra cliente insatisfeito pra fora, sem resolver nada.">
+      <h2>Métricas e governança</h2>
+      <div class="row gap-m">
+        <div class="card-teal grow"><h3 class="mono" style="color:var(--teal)">Resolution rate</h3><p style="color:var(--ink)">Problema resolvido de fato, sem escalar e sem o cliente voltar em 24-48h. A métrica que importa.</p></div>
+        <div class="card-amber grow"><h3 class="mono" style="color:var(--amber)">Deflection rate</h3><p style="color:var(--ink)">Não virou ticket humano — mesmo que o cliente tenha desistido sem resolver nada.</p></div>
+      </div>
+      <div class="row gap-m grow">
+        <div class="card grow"><h3 class="mono" style="font-size:clamp(14px,1.6vw,20px)">BSAT</h3><p class="muted">Satisfação específica com a interação com o bot.</p></div>
+        <div class="card grow"><h3 class="mono" style="font-size:clamp(14px,1.6vw,20px)">CSAT</h3><p class="muted">Satisfação geral do atendimento, não específica do bot.</p></div>
+        <div class="card grow"><h3 class="mono" style="font-size:clamp(14px,1.6vw,20px)">Version history</h3><p class="muted">Histórico de versões do dialogue — dá para reverter uma mudança publicada.</p></div>
+      </div>
+    </section>
+
+    <section class="slide dark col gap-l" style="justify-content:center" data-notes="Encerramento: direcionar quem assistiu de volta para o repositório, reforçando que esta apresentação é resumo, não substitui os módulos.">
+      <h2>Onde continuar</h2>
+      <p class="muted-dark">Glossário completo, com todos os termos e mais contexto: <b style="color:var(--cream)">anexos/glossario.md</b></p>
+      <p class="muted-dark">Fontes oficiais de cada termo: <b style="color:var(--cream)">anexos/links-oficiais.md</b></p>
+      <p class="muted-dark">Cada termo aparece explicado em contexto nos <b style="color:var(--cream)">Módulos 0 a 7</b> do treinamento.</p>
+    </section>
+
+  </div>
+</div>
+
+<div id="controls">
+  <button id="prev" title="Anterior (←)">‹</button>
+  <span id="counter">1 / 10</span>
+  <button id="next" title="Próximo (→)">›</button>
+  <button id="notesToggle" title="Notas do apresentador (N)">notas</button>
+</div>
+<div id="notes"></div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var idx = 0;
+  var notesOn = false;
+
+  function render() {
+    slides.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
+    document.getElementById('counter').textContent = (idx + 1) + ' / ' + slides.length;
+    var notesEl = document.getElementById('notes');
+    notesEl.textContent = slides[idx].getAttribute('data-notes') || '';
+    notesEl.classList.toggle('show', notesOn && !!slides[idx].getAttribute('data-notes'));
+  }
+  function go(delta) {
+    idx = Math.max(0, Math.min(slides.length - 1, idx + delta));
+    render();
+  }
+  document.getElementById('prev').addEventListener('click', function () { go(-1); });
+  document.getElementById('next').addEventListener('click', function () { go(1); });
+  document.getElementById('notesToggle').addEventListener('click', function () {
+    notesOn = !notesOn; render();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') go(1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(-1);
+    else if (e.key.toLowerCase() === 'n') { notesOn = !notesOn; render(); }
+  });
+  render();
+</script>
+
+</body>
+</html>
